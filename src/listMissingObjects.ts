@@ -30,36 +30,19 @@ export function listMissingObjects(
     personsArrTwo: Person[]
 ): Person[] {
     const missingObjects: Person[] = [];
-    const personsArrOneLen = personsArrOne.length;
-    const personsArrTwoLen = personsArrTwo.length;
 
-    for (let i = 0; i < personsArrOneLen; i++) {
-        for (let j = 0; j < personsArrTwoLen; j++) {
-            const personOne = personsArrOne[i];
-            const personTwo = personsArrTwo[j];
-            // console.log("person one", personOne, "person two", personTwo);
-
+    for (const personOne of personsArrOne) {
+        let foundMatch = false;
+        for (const personTwo of personsArrTwo) {
             if (isAMatch(personOne, personTwo)) {
-                console.log("These two are a match", personOne, personTwo);
-            } else {
-                missingObjects.push(personOne);
+                foundMatch = true;
+                break;
             }
+        }
+
+        if (!foundMatch) {
+            missingObjects.push(personOne);
         }
     }
     return missingObjects;
 }
-
-const result = listMissingObjects(
-    [
-        { id: 1, name: "fred" },
-        { id: 3, name: "omar" },
-        { id: 17, name: "neto" },
-    ],
-    [
-        { id: 2, name: "allie" },
-        { id: 20, name: "omar" },
-        { id: 17, name: "neto" },
-    ]
-);
-
-console.log(result);
