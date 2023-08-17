@@ -46,3 +46,13 @@ export function listMissingObjects(
     }
     return missingObjects;
 }
+
+export function listMissingObjectsUsingFilter(
+    personsArrOne: Person[],
+    personsArrTwo: Person[]
+): Person[] {
+    return personsArrOne.filter(
+        (personOne) =>
+            !personsArrTwo.some((personTwo) => isAMatch(personOne, personTwo))
+    );
+}
