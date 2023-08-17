@@ -14,5 +14,5 @@ test("return an array of the objects from the first array which do not have a ma
                 { id: 17, name: "neto" },
             ]
         )
-    ).toBe([{ id: 1, name: "fred" }]);
+    ).toStrictEqual([{ id: 1, name: "fred" }]);
 });
